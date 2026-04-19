@@ -107,7 +107,7 @@ Create a `.env` file in the `backend/` directory:
 ```env
 DATABASE_URL="PostgreSQL://user:password@localhost:3306/slrms_db"
 JWT_SECRET="your_jwt_secret"
-PORT=5000
+PORT=3001
 FINE_RATE_PER_DAY=5
 ```
 
