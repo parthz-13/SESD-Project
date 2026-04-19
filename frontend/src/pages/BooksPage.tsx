@@ -4,7 +4,7 @@ import { booksApi } from '../api/books';
 import { reservationsApi } from '../api/reservations';
 import { useAuth } from '../context/AuthContext';
 import Sidebar from '../components/Sidebar';
-import { Search, BookOpen, BookmarkPlus, Plus, X, ChevronDown, Trash2 } from 'lucide-react';
+import { Search, BookOpen, BookmarkPlus, Plus, X, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface Author { id: number; name: string; }
