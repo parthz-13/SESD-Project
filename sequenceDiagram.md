@@ -10,7 +10,7 @@ sequenceDiagram
     participant AuthController
     participant AuthService
     participant UserRepository
-    participant DB as MySQL (Prisma)
+    participant DB as PostgreSQL (Prisma)
 
     %% Registration
     Client->>AuthController: POST /api/auth/register { name, email, password, role }
@@ -54,7 +54,7 @@ sequenceDiagram
     participant BookRepository
     participant BorrowingRepository
     participant NotificationService
-    participant DB as MySQL (Prisma)
+    participant DB as PostgreSQL (Prisma)
 
     Librarian->>AuthMiddleware: POST /api/borrowings/issue { memberId, bookId } + JWT
     AuthMiddleware->>AuthMiddleware: verifyToken(JWT)
@@ -100,7 +100,7 @@ sequenceDiagram
     participant FineService
     participant FineRepository
     participant NotificationService
-    participant DB as MySQL (Prisma)
+    participant DB as PostgreSQL (Prisma)
 
     Librarian->>BorrowingController: PATCH /api/borrowings/:id/return + JWT
     BorrowingController->>BorrowingService: returnBook(borrowingId)
@@ -148,7 +148,7 @@ sequenceDiagram
     participant BookRepository
     participant ReservationRepository
     participant NotificationService
-    participant DB as MySQL (Prisma)
+    participant DB as PostgreSQL (Prisma)
 
     Member->>AuthMiddleware: POST /api/reservations { bookId } + JWT
     AuthMiddleware->>AuthMiddleware: verifyToken(JWT)
@@ -188,7 +188,7 @@ sequenceDiagram
     participant FineController
     participant FineService
     participant FineRepository
-    participant DB as MySQL (Prisma)
+    participant DB as PostgreSQL (Prisma)
 
     Member->>FineController: PATCH /api/fines/:id/pay + JWT
     FineController->>FineService: payFine(fineId)
