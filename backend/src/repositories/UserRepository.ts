@@ -16,11 +16,17 @@ export class UserRepository implements IUserRepository {
   }
 
   async findById(id: number): Promise<User | null> {
-    return this.prisma.user.findUnique({ where: { id } }) as Promise<User | null>;
+    return this.prisma.user.findUnique({ 
+      where: { id },
+      include: { member: { select: { id: true } }, librarian: { select: { id: true } } }
+    }) as Promise<User | null>;
   }
 
   async findByEmail(email: string): Promise<User | null> {
-    return this.prisma.user.findUnique({ where: { email } }) as Promise<User | null>;
+    return this.prisma.user.findUnique({ 
+      where: { email },
+      include: { member: { select: { id: true } }, librarian: { select: { id: true } } }
+    }) as Promise<User | null>;
   }
 
   async findAll(): Promise<User[]> {
@@ -30,7 +36,28 @@ export class UserRepository implements IUserRepository {
   }
 
   async create(data: CreateUserDTO): Promise<User> {
-    return this.prisma.user.create({ data }) as Promise<User>;
+    const user = await this.prisma.user.create({ data });
+
+    if (data.role === 'MEMBER') {
+      const expiry = new Date();
+      expiry.setFullYear(expiry.getFullYear() + 1);
+      await this.prisma.member.create({
+        data: {
+          userId: user.id,
+          membershipNumber: `MEM-${Date.now()}-${user.id}`,
+          membershipExpiry: expiry,
+        }
+      });
+    } else if (data.role === 'LIBRARIAN') {
+      await this.prisma.librarian.create({
+        data: {
+          userId: user.id,
+          employeeCode: `LIB-${Date.now()}-${user.id}`,
+        }
+      });
+    }
+
+    return (await this.findById(user.id)) as User;
   }
 
   async update(id: number, data: UpdateUserDTO): Promise<User> {

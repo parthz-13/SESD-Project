@@ -26,8 +26,8 @@ router.post('/', authenticate, authorize(UserRole.ADMIN, UserRole.LIBRARIAN), bo
 // PUT /api/books/:id — admin/librarian
 router.put('/:id', authenticate, authorize(UserRole.ADMIN, UserRole.LIBRARIAN), bookController.updateBook);
 
-// DELETE /api/books/:id — admin only
-router.delete('/:id', authenticate, authorize(UserRole.ADMIN), bookController.deleteBook);
+// DELETE /api/books/:id — admin/librarian
+router.delete('/:id', authenticate, authorize(UserRole.ADMIN, UserRole.LIBRARIAN), bookController.deleteBook);
 
 // ─── Authors ──────────────────────────────────────────────────────────────────
 router.get('/authors/all', bookController.getAllAuthors);

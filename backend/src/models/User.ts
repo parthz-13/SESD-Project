@@ -15,6 +15,8 @@ export interface User {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
+  member?: { id: string } | null;
+  librarian?: { id: string } | null;
 }
 
 export interface SafeUser {

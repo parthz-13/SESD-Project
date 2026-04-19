@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '../context/AuthContext';
 import { booksApi } from '../api/books';
-import { borrowingsApi, finesApi } from '../api/library';
+import { borrowingsApi } from '../api/library';
 import { BookOpen, BookMarked, Receipt, AlertTriangle } from 'lucide-react';
 import Sidebar from '../components/Sidebar';
 

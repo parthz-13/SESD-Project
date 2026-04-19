@@ -10,6 +10,8 @@ export interface AuthRequest extends Request {
   user?: {
     userId: number;
     role: UserRole;
+    memberId?: string;
+    librarianId?: string;
   };
 }
 
@@ -29,7 +31,12 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
   const token = authHeader.split(' ')[1];
   try {
     const payload = authService.verifyToken(token);
-    req.user = { userId: payload.userId, role: payload.role };
+    req.user = { 
+      userId: payload.userId, 
+      role: payload.role,
+      memberId: payload.memberId,
+      librarianId: payload.librarianId
+    };
     next();
   } catch (error) {
     next(error);

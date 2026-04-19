@@ -21,12 +21,16 @@ export interface AuthResponseDTO {
     name: string;
     email: string;
     role: UserRole;
+    memberId?: string;
+    librarianId?: string;
   };
 }
 
 export interface JwtPayload {
   userId: number;
   role: UserRole;
+  memberId?: string;
+  librarianId?: string;
   iat?: number;
   exp?: number;
 }

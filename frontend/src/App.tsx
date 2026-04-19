@@ -12,6 +12,8 @@ import DashboardPage from './pages/DashboardPage';
 import BooksPage from './pages/BooksPage';
 import BorrowingsPage from './pages/BorrowingsPage';
 import FinesPage from './pages/FinesPage';
+import ReservationsPage from './pages/ReservationsPage';
+import NotificationsPage from './pages/NotificationsPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +44,12 @@ const App: React.FC = () => {
             <Route path="/fines" element={
               <ProtectedRoute><FinesPage /></ProtectedRoute>
             } />
+            <Route path="/reservations" element={
+              <ProtectedRoute><ReservationsPage /></ProtectedRoute>
+            } />
+            <Route path="/notifications" element={
+              <ProtectedRoute><NotificationsPage /></ProtectedRoute>
+            } />
 
             {/* Protected — admin/librarian only */}
             <Route path="/borrowings" element={
@@ -56,9 +64,9 @@ const App: React.FC = () => {
         <Toaster
           position="top-right"
           toastOptions={{
-            style: { background: '#1e2030', color: '#cdd6f4', border: '1px solid #313244' },
-            success: { iconTheme: { primary: '#a6e3a1', secondary: '#1e2030' } },
-            error: { iconTheme: { primary: '#f38ba8', secondary: '#1e2030' } },
+            style: { background: 'var(--bg-surface)', color: 'var(--text-primary)', border: '1px solid var(--border)' },
+            success: { iconTheme: { primary: 'var(--accent-green)', secondary: 'var(--bg-surface)' } },
+            error: { iconTheme: { primary: 'var(--accent-red)', secondary: 'var(--bg-surface)' } },
           }}
         />
       </AuthProvider>

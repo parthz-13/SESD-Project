@@ -39,11 +39,23 @@ export class AuthService {
     };
 
     const user = await this.userRepository.create(createData);
-    const token = this.generateToken({ userId: user.id, role: user.role });
+    const token = this.generateToken({ 
+      userId: user.id, 
+      role: user.role,
+      memberId: user.member?.id,
+      librarianId: user.librarian?.id,
+    });
 
     return {
       token,
-      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+      user: { 
+        id: user.id, 
+        name: user.name, 
+        email: user.email, 
+        role: user.role,
+        memberId: user.member?.id,
+        librarianId: user.librarian?.id,
+      },
     };
   }
 
@@ -62,11 +74,23 @@ export class AuthService {
       throw AppError.unauthorized('Invalid email or password');
     }
 
-    const token = this.generateToken({ userId: user.id, role: user.role });
+    const token = this.generateToken({ 
+      userId: user.id, 
+      role: user.role,
+      memberId: user.member?.id,
+      librarianId: user.librarian?.id,
+    });
 
     return {
       token,
-      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+      user: { 
+        id: user.id, 
+        name: user.name, 
+        email: user.email, 
+        role: user.role,
+        memberId: user.member?.id,
+        librarianId: user.librarian?.id,
+      },
     };
   }
 

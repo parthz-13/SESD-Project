@@ -1,3 +1,5 @@
+import { BorrowingStatus, ReservationStatus, NotificationType } from '@prisma/client';
+
 // ─── Borrowing DTOs ──────────────────────────────────────────────────────────
 
 export interface CreateBorrowingDTO {
@@ -9,7 +11,7 @@ export interface CreateBorrowingDTO {
 
 export interface UpdateBorrowingDTO {
   returnDate?: Date;
-  status?: string;
+  status?: BorrowingStatus;
 }
 
 // ─── Reservation DTOs ────────────────────────────────────────────────────────
@@ -21,7 +23,7 @@ export interface CreateReservationDTO {
 }
 
 export interface UpdateReservationDTO {
-  status?: string;
+  status?: ReservationStatus;
 }
 
 // ─── Fine DTOs ───────────────────────────────────────────────────────────────
@@ -38,5 +40,5 @@ export interface CreateNotificationDTO {
   userId: number;
   title: string;
   message: string;
-  type: string;
+  type: NotificationType;
 }
